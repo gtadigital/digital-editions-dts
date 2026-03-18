@@ -132,8 +132,9 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env.local
-.env.*.local
+## We keep the .env.local for Docker Buildx, see release to ghcr.io
+# # .env.local
+# # .env.*.local
 .venv
 env/
 venv/
