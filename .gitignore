@@ -1,3 +1,10 @@
+# Digital-Editions Fork
+out/
+run.sh
+.env
+.DS_Store
+
+# Dapythings
 app.db
 balbilla
 

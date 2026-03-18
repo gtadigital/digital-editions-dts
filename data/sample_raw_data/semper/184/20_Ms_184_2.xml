@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TEI SYSTEM "Zeichen.dtd">
+<?xml-model href="semper_edition_schema_prov.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title>Gottfried Semper: Der Stil. Kritische und kommentierte Ausgabe: Autograph: <label>gta Ms 184</label>, <locus>fols. 1v-2r</locus></title>
+				<author ref="personen.xml#GS">Semper, Gottfried (1803-1879)</author>
+				<funder>Schweizerischer Nationalfonds (SNF)</funder>
+				<sponsor>Università della Svizzera italiana, Eidgenössische Technische Hochschule</sponsor>
+				<principal> Prof. Dr. Philip Ursprung (ETH), Prof. Dr. Sonja Hildebrand (USI)</principal>
+				
+				
+			</titleStmt>
+			<editionStmt>
+				<edition>transcription and encoding</edition>
+				<respStmt n="1">
+					<resp xml:lang="en">transcribed by</resp>
+					<name ref="personen.xml#TK">Tanja Kevic</name>
+				</respStmt>
+				<respStmt n="2">
+					<resp xml:lang="en">converted to TEI-conformant markup</resp>
+					<name ref="personen.xml#ECh">Elena Chestnova</name>
+				</respStmt>
+				<respStmt>
+					<resp>proof read by</resp>
+					<name ref="personen.xml#RG">Raphael Germann</name>
+				</respStmt>
+			</editionStmt>
+			<publicationStmt>
+				<authority>Semper-Edition SNF Projekt</authority>
+				<pubPlace>Zürich</pubPlace>
+				<date>2020</date>
+			</publicationStmt>
+			<sourceDesc>
+				<msDesc>
+					<msIdentifier>
+						<settlement>Zürich</settlement>
+						<institution>Eidgenössische Technische Hochschule</institution>
+						<repository>gta Archiv</repository>
+						<idno>20-Ms-184</idno>
+					</msIdentifier>
+					
+					<msContents><textLang xml:lang="de">Deutsch</textLang><msItem n="1"><locus>fols. 1v-2r</locus><p xml:id="p.weuuN5">Skizze einer inhaltlichen Gliederung des Stils von <name>Gottfried Semper</name></p></msItem></msContents>
+					<physDesc>
+						<objectDesc form="manuscript"> 
+							<supportDesc><support>bräunliches Papier, Bleistift.</support>
+								<extent>3 Blätter<dimensions scope="all" type="leaf" unit="cm"><height>21.5</height><width>13</width></dimensions></extent>
+								<foliation>Paginierung auf oben links in Bleistift von <rs type="person" ref="personen.xml#WH">Wolfgang Herrmann</rs></foliation>
+								<collation><p xml:id="p.uJnsoV">gefaltete Blätter: fol. 1 und 2. Fol. 3 ist ungefaltet.</p></collation>
+								<condition><p xml:id="p.DHIUXD">Ohne wesentlichen Beschädigungen.</p></condition></supportDesc>
+							<layoutDesc> <layout columns="2"><p xml:id="p.wbpVs8">Blätter sind ein- bis zweispaltig auf recto und verso beschrieben. 3v ist, abgesehen von der Paginierung, leer.</p></layout>
+							</layoutDesc>
+						</objectDesc>
+						<handDesc hands="2"><summary>Von Gottfried Semper in Blei geschrieben.</summary>
+							<handNote xml:id="hGS" corresp="personen.xml#GS" n="1"><p xml:id="p.n9ef7n">Text in Blei von <rs type="person" ref="personen.xml#GS">Gottfried Semper</rs>.</p></handNote>
+							<handNote xml:id="hWH" corresp="personen.xml#WH" n="2"><p xml:id="p.LKFwmg">Paginierung in Blei von <rs type="person" ref="personen.xml#WH">Wolfgang Herrmann</rs>.</p></handNote>
+							<handNote xml:id="hDW"><p xml:id="p.dme9tk">Signatur auf 1r, unten rechts von <rs type="person" ref="personen.xml#DW">Daniel Weiss</rs>.</p></handNote>
+						</handDesc>
+						<accMat></accMat>
+					</physDesc>
+				</msDesc>
+			</sourceDesc></fileDesc>
+		<encodingDesc>
+			<editorialDecl>
+				<p xml:id="p.YAHVkH">Der von Gottfried Semper geschriebene Text wurde transkribiert. Orthographische Besonderheiten der Semperschen Zeit ohne Kommentar transkribiert.</p>
+			</editorialDecl>
+		</encodingDesc>
+		<profileDesc>
+			<creation>
+				<date from="1856" to="1860">1856–1860</date>
+				<name type="place">Zürich</name>
+			</creation>
+			<langUsage>
+				<language ident="de">Deutsch</language>
+			</langUsage>
+			
+		</profileDesc>
+		
+	</teiHeader>
+	<facsimile xml:id='facs_2'>
+		<surface ulx='0' uly='0' lrx='6728' lry='5937'>
+			<graphic url='20_Ms_184_2.jpg' width='6728px' height='5937px'/>
+			<zone points='210,307 410,307 410,513 210,513' rendition='TextRegion' xml:id='facs_2_r1'/>
+			<zone points='433,329 2912,320 2915,980 436,989' rendition='TextRegion' xml:id='facs_2_r2'/>
+			<zone points='1762,1011 3211,1011 3205,1688 1756,1688' rendition='TextRegion' xml:id='facs_2_r3'/>
+			<zone points='210,1905 1474,1992 1512,2052 1635,2237 1727,2343 1825,2426 1848,2630 210,2644' rendition='TextRegion' xml:id='facs_2_r4'/>
+			<zone points='228,2663 1583,2661 1586,3372 1819,3382 1583,3619 227,3653' rendition='TextRegion' xml:id='facs_2_r5'/>
+			<zone points='2031,2062 1796,2118 1709,1872 563,1881 575,1715 3289,1715 3274,2588 1981,2604' rendition='TextRegion' xml:id='facs_2_r6'/>
+			<zone points='1661,2185 2006,2185 2006,2323 1661,2323' rendition='TextRegion' xml:id='facs_2_r7'/>
+			<zone points='1647,2621 3247,2621 3247,3326 1647,3326' rendition='TextRegion' xml:id='facs_2_r8'/>
+			<zone points='227,3659 3281,3659 3281,4799 227,4799' rendition='TextRegion' xml:id='facs_2_r9'/>
+			<zone points='5814,323 6098,323 6098,538 5814,538' rendition='TextRegion' xml:id='facs_2_r10'/>
+			<zone points='2937,311 4510,311 4510,1000 2937,1000' rendition='TextRegion' xml:id='facs_2_r11'/>
+			<zone points='3531,1091 6463,1091 6463,2003 3531,2003' rendition='TextRegion' xml:id='facs_2_r12'/>
+			<zone points='3618,2029 6510,2029 6494,3088 3621,3240' rendition='TextRegion' xml:id='facs_2_r13'/>
+			<zone points='3368,3248 6454,3110 6473,5213 3368,5205' rendition='TextRegion' xml:id='facs_2_r14'/>
+		</surface>
+	</facsimile>
+	<text>
+		<body>
+			<pb facs="#facs_2" n="2" xml:id="F20_Ms_184_1v"/>
+			<p facs="#facs_2_r1" xml:id="p.i9YmrF"><handShift new="#hGS" script="Kurrent" medium="Blei"/>
+				<lb facs="#facs_2_r1l1" n="N001"/><handShift new="#hWH"/><hi rend="Kreis">2</hi><handShift new="#hGS"/>
+			</p>
+			<p facs="#facs_2_r2" xml:id="p.UKOq1E" prev="20_MS_184_1.xml#p.m9j97A" next="#p.DJF4ah">
+				<lb facs="#facs_2_r2l1" n="N001"/><handShift script="Latein"/><subst><del rend="überschr">g</del><add>G</add></subst>ewänder - Costum<handShift script="Kurrent"/>geschichte
+				<lb facs="#facs_2_r2l2" n="N002"/><handShift script="Latein"/>Waffen. - Hoplonomie
+				<lb facs="#facs_2_r2l3" n="N003"/><rs type="artefact" ref="artefaktenregister.xml#THING0260">Teppiche</rs> und -
+				<lb facs="#facs_2_r2l4" n="N004"/>Wandbekleidungen -
+				<lb facs="#facs_2_r2l5" n="N005"/>Baugeschichte.
+			</p>
+			<p facs="#facs_2_r3" xml:id="p.DJF4ah" prev="#p.UKOq1E" next="#p.JLDhqw">
+				<lb facs="#facs_2_r3l1" n="N001"/><handShift script="Kurrent"/>Wichtiger Einfluss
+				<lb facs="#facs_2_r3l2" n="N002"/>d<unclear>er</unclear> Teppichwir<unclear>kerei</unclear>
+				<lb facs="#facs_2_r3l3" n="N003"/>auf die Symbolik des
+				<lb facs="#facs_2_r3l4" n="N004"/>Alterthums dto des
+				<lb facs="#facs_2_r3l5" n="N005"/>Mittelalters.
+			</p>
+			<p facs="#facs_2_r4" xml:id="p.JLDhqw" prev="#p.DJF4ah" next="#p.6R4WlA">
+				<lb facs="#facs_2_r4l1" n="N001"/>Hier sollte eigentlich
+				<lb facs="#facs_2_r4l2" n="N002"/>die Geschichte und Kunstlehre 
+				<lb facs="#facs_2_r4l3" n="N003"/>der gesammt<unclear>en</unclear> <hi rend="unterstr">bildenden Kunst</hi>
+				<lb facs="#facs_2_r4l4" n="N004"/>folgen. <unclear>D</unclear>ie Glasmalerei
+				<lb facs="#facs_2_r4l5" n="N005"/>und Mosaikmalerei,
+				<lb facs="#facs_2_r4l6" n="N006"/>der Stuckmarmor, <handShift script="Latein"/>Fresco.<metamark rend="Linie" function="Einfügung" target="#p.3BPULy"></metamark><handShift script="Kurrent"/>
+			</p>
+			<p facs="#facs_2_r5" xml:id="p.6R4WlA" prev="#p.JLDhqw" next="#p.HiI5QN">
+				<lb facs="#facs_2_r5l1" n="N001"/>Vielleicht nur
+				<lb facs="#facs_2_r5l2" n="N002"/>hier darauf hinzu<choice><sic/><corr>-</corr></choice>
+				<lb facs="#facs_2_r5l3" n="N003" type="hyph"/>deuten.
+				<lb facs="#facs_2_r5l4" n="N004"/>aber doch deutlich mach
+				<lb facs="#facs_2_r5l5" n="N005"/>dass d. Begriff Beklei-
+				<lb facs="#facs_2_r5l6" n="N006" type="hyph"/>dung Wand weiter geht als
+				<lb facs="#facs_2_r5l7" n="N007"/>das <rs type="artefact" ref="artefaktenregister.xml#THING0259">Gewebe</rs>. - 
+			</p>
+			<p facs="#facs_2_r6" xml:id="p.HiI5QN" prev="#p.6R4WlA" next="#p.bQhxff">
+				<lb facs="#facs_2_r6l1" n="N001"/><del rend="durchstr" xml:id="del.sNlplt">Symbole d<unclear>er</unclear> Griechischen</del> Spätere Nachbildung
+				<lb facs="#facs_2_r6l2" n="N002"/>der Wandbekleidung<unclear>en</unclear>
+				<lb facs="#facs_2_r6l3" n="N003"/><retrace>d</retrace>urch
+				<lb facs="#facs_2_r6l4" n="N004"/>a) Stuck
+				<lb facs="#facs_2_r6l5" n="N005"/>b) Holz.
+				<lb facs="#facs_2_r6l6" n="N006"/>c) Metall &amp; Holz.
+				<lb facs="#facs_2_r6l7" n="N007"/>d) Stein.
+			</p>
+			<p facs="#facs_2_r7" xml:id="p.3BPULy">
+				<lb facs="#facs_2_r7l1" n="N001"/><metamark rend="Linie"></metamark><handShift script="Latein"/>Pompei<handShift script="Kurrent"/>
+			</p>
+			<p facs="#facs_2_r8" xml:id="p.bQhxff" prev="#p.HiI5QN" next="#p.zhAluD">
+				<lb facs="#facs_2_r8l1" n="N001"/>Ursprung des <subst><del rend="durchstr" xml:id="del.94jrtw">A<unclear extent="1 Graph" unit="char" quantity="1"></unclear></del><add xml:id="add.dJvfRf">Qu</add></subst>aderwerks.
+				<lb facs="#facs_2_r8l2" n="N002"/>Assyrer, Perser, Aegypter<unclear>.</unclear>
+				<lb facs="#facs_2_r8l3" n="N003"/>Hellenen, Römer,
+				<lb facs="#facs_2_r8l4" n="N004"/>Byzantiner und westliche
+				<lb facs="#facs_2_r8l5" n="N005"/>Kirche - Gothisch modern.
+			</p>
+			<p facs="#facs_2_r9" xml:id="p.zhAluD" prev="#p.bQhxff" next="#p.2dCPFr">
+				<lb facs="#facs_2_r9l1" n="N001"/>Einiges über neue Teppichfabrikation.
+				<lb facs="#facs_2_r9l2" n="N002"/><del rend="durchstr">und mangelhaf</del> Auch hier Mangel an <subst><del rend="überschr">e</del><add>E</add></subst>igenthümlich<subst><del rend="überschr">er</del><add>keit</add></subst>
+				<lb facs="#facs_2_r9l3" n="N003"/><del rend="durchstr">An</del> und Entschiedenheit. <handShift script="Latein"/>Gobelins, Beauvais,<handShift script="Kurrent"/>
+				<lb facs="#facs_2_r9l4" n="N004"/><subst><del rend="überschr"><unclear extent="1 Graph" unit="char" quantity="1"></unclear></del><add>E</add></subst>nglische Fabrikation. Pariser Ausstellung.
+				<lb facs="#facs_2_r9l5" n="N005"/>Einige stylistische Rathschläge und wie wir aus
+				<lb facs="#facs_2_r9l6" n="N006"/>der von den Chinesen so sehr ausgebildeten
+				<lb facs="#facs_2_r9l7" n="N007"/><subst><del rend="überschr">S</del><add>E</add></subst>crans <unclear><del rend="durchstr">s</del></unclear>spanische Wände zu bedienen
+				<lb facs="#facs_2_r9l8" n="N008"/>haben.
+			</p>
+			<pb facs="#facs_2" n="2" xml:id="F20_Ms_184_2r"/>
+			<p facs="#facs_2_r10" xml:id="p.DzyRlI">
+				<lb facs="#facs_2_r10l1" n="N001"/><handShift new="#hWH"/><hi rend="Kreis">3</hi><handShift new="#hGS"/>
+			</p>
+			<p facs="#facs_2_r11" xml:id="p.2dCPFr" prev="#p.zhAluD" next="#p.PEdeLp">
+				<lb facs="#facs_2_r11l1" n="N001"/>Einige Details über
+				<lb facs="#facs_2_r11l2" n="N002"/>besondere <del rend="durchstr">Arten</del>
+				<lb facs="#facs_2_r11l3" n="N003"/><retrace>Zw</retrace>eige <del rend="durchstr">textiler</del> von
+				<lb facs="#facs_2_r11l4" n="N004"/>Lu<subst><del rend="überschr">s</del><add>x</add></subst>usweberei und
+				<lb facs="#facs_2_r11l5" n="N005"/>Stickerei.
+			</p>
+			<p facs="#facs_2_r12" xml:id="p.PEdeLp" prev="#p.2dCPFr" next="#p.8Vj2GI">
+				<lb facs="#facs_2_r12l1" n="N001"/>c) <hi rend="unterstr">Die keramischen Producte</hi>
+				<lb facs="#facs_2_r12l2" n="N002"/>Die ältesten Zeugen der Cultur und die wenigstens
+				<lb facs="#facs_2_r12l3" n="N003"/><del rend="durchstr">in s</del> in dieser Beziehung der Ancienit<sic>a</sic>t
+				<lb facs="#facs_2_r12l4" n="N004"/>nach im Vorrecht. <del rend="durchstr">Geschichte der Keramik</del>
+				<lb facs="#facs_2_r12l5" n="N005"/>Was zur Keramik im weitesten
+				<lb facs="#facs_2_r12l6" n="N006"/>Sinne gehört.
+			</p>
+			<p facs="#facs_2_r13" xml:id="p.8Vj2GI" prev="#p.PEdeLp" next="#p.QSOBAo">
+				<lb facs="#facs_2_r13l1" n="N001"/>Woher de Name.
+				<lb facs="#facs_2_r13l2" n="N002"/><delSpan spanTo="#A20_Ms_184_2_1" rend="durchstr Blei"/>Hier ist wie im Vorhergehenden Folgende<del rend="durchstr">s</del>
+				<lb facs="#facs_2_r13l3" n="N003"/>Reihenfolge streng zu beobachten
+				<lb facs="#facs_2_r13l4" n="N004"/><handShift script="Latein"/>a)<handShift script="Kurrent"/> <del rend="durchstr">materielle</del> das wissenschaftliche
+				<lb facs="#facs_2_r13l5" n="N005"/><handShift script="Latein"/>b)<handShift script="Kurrent"/> d<subst><del rend="durchstr">as</del><add>ie</add></subst> aesthetische<add place="in_Zeile"></add>n <unclear>Fragen</unclear>.
+				<lb facs="#facs_2_r13l6" n="N006"/><handShift script="Latein"/>c)<handShift script="Kurrent"/> die Kunstgeschichte. und die Kunstlehre<anchor xml:id="A20_Ms_184_2_1"/>
+				<lb facs="#facs_2_r13l7" n="N007"/><del rend="durchstr"><handShift script="Latein"/>a)<handShift script="Kurrent"/> das die Gesetze der Symmetrie</del>
+			</p>
+			<p facs="#facs_2_r14" xml:id="p.QSOBAo" prev="#p.8Vj2GI" next="20_MS_184_3.xml#p.U6EvpE">
+				<lb facs="#facs_2_r14l1" n="N001"/>Die ästhetischen Gesetze <del rend="durchstr">der Vor<unclear>g</unclear>e</del> zuerst an
+				<lb facs="#facs_2_r14l2" n="N002"/>der Töpferei zur Anwendung gebracht und
+				<lb facs="#facs_2_r14l3" n="N003"/>wahrscheinlich bereits geregelt. -
+				<lb facs="#facs_2_r14l4" n="N004"/>Jede<add place="in_Zeile">s</add> <del rend="durchstr">Ziervase</del> Gefäss hat seine reelle
+				<lb facs="#facs_2_r14l5" n="N005"/>oder gedachte Bestimmung und ihr
+				<lb facs="#facs_2_r14l6" n="N006"/>gemäss eine Art von Ideal dem sie in
+				<lb facs="#facs_2_r14l7" n="N007"/>ihrem Erscheinen entsprechen muss. Diese Grund<choice><sic/><corr>-</corr></choice>
+				<lb facs="#facs_2_r14l8" n="N008" type="hyph"/><del rend="durchstr">form muss mehr</del> bestimmung<unclear>en</unclear> und daraus hervor-
+				<lb facs="#facs_2_r14l9" n="N009" type="hyph"/>gehende <add place="oberhalb">ideale</add> Grundform muss man kennen und
+				<lb facs="#facs_2_r14l10" n="N010"/>sie dann durch die Materie verkörpern wissen<unclear>.</unclear>
+				<lb facs="#facs_2_r14l11" n="N011"/>Daher <unclear>erstens</unclear> die verschiedenen <del rend="durchstr">Vasen</del><add place="oberhalb">Formen</add> nach
+				<lb facs="#facs_2_r14l12" n="N012"/>ihrer Bestimmung<unclear>en</unclear>
+				<lb facs="#facs_2_r14l13" n="N013"/><handShift script="Latein"/>a<handShift script="Kurrent"/>) einfache
+				<lb facs="#facs_2_r14l14" n="N014"/><handShift script="Latein"/>b<handShift script="Kurrent"/>) zusammengesetzte.
+			</p>
+			<join target="#p.QSOBAo 20_MS_184_3.xml#p.U6EvpE"/>
+		</body>
+	</text>
+</TEI>
