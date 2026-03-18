@@ -4,6 +4,9 @@ run.sh
 .env
 .DS_Store
 
+_dev
+docker-compose.dev*
+
 # Dapythings
 app.db
 balbilla

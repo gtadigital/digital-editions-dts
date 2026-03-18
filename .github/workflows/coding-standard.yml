@@ -3,7 +3,11 @@
 
 name: Check coding standard
 
-on: [push, pull_request]
+# Disabling the automatic autopep. Refers to the upstream repository if something funny happen.
+# on: [push, pull_request]
+on:
+  workflow_dispatch:
+
 
 jobs:
   test:

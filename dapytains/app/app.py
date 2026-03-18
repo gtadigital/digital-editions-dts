@@ -292,7 +292,7 @@ if __name__ == "__main__":
         store_catalog(catalog)
 
     if "prod" != os.getenv("SERVER_ENV", "prod"):
-        app.run(debug=True, host=os.getenv("SERVER_HOST", "0.0.0.0"), port=os.getenv("SERVER_PORT", 5000))
+        app.run(debug=True, host=os.getenv("SERVER_HOST", "0.0.0.0"), port=os.getenv("SERVER_PORT", 5000), url_prefix=os.getenv("URL_PREFIX", ""))
     else:
         from waitress import serve
-        serve(app, host=os.getenv("SERVER_HOST", "0.0.0.0"), port=os.getenv("SERVER_PORT", 5000))
+        serve(app, host=os.getenv("SERVER_HOST", "0.0.0.0"), port=os.getenv("SERVER_PORT", 5000), url_prefix=os.getenv("URL_PREFIX", ""))

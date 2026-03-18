@@ -1,0 +1,14 @@
+services:
+  dapytains:
+    build: .
+    # restart: unless-stopped
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+      - DTSCATALOG=${DTSCATALOG}
+      - SERVER_ENV=${SERVER_ENV}
+      - SERVER_HOST=${SERVER_HOST}
+      - SERVER_PORT=${SERVER_PORT}
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/app
