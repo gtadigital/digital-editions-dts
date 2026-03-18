@@ -1,10 +1,14 @@
-name: Release
+name: Release to Pypi (current MyDapytains)
 
+# Disabling the automatic deployment from tagged push
 on:
-  push:
-    # Pattern matched against refs/tags
-    tags:        
-      - '**'           # Push events to every tag including hierarchical tags like v1.0/beta
+  # push:
+  #   # Pattern matched against refs/tags
+  #   tags:        
+  #     - '**'           # Push events to every tag including hierarchical tags like v1.0/beta
+  workflow_dispatch:
+
+
 jobs:
   release-build:
     runs-on: ubuntu-latest
