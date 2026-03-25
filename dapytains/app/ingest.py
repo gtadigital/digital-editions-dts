@@ -8,6 +8,7 @@ import tqdm
 
 def store_single(catalog: Catalog, keys: Optional[Dict[str, int]]):
     keys = keys or {}
+    print("Building Collection Index,")
     for identifier, collection in tqdm.tqdm(catalog.objects.items(), desc="Parsing all collections"):
         coll_db = Collection.from_class(collection)
         db.session.add(coll_db)

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?oxygen RNGSchema="schema.rng" type="xml"?>
+<collection identifier="http://example/org/dts/semper">
+  <title>Digital Editions</title>
+  <dublinCore>
+    <creator>GTA Digital/ETH Zurich</creator>
+    <creator>Swiss Art Research Institute (SARI)/ Univ. Zurich</creator>
+    <!-- <contributor>e.g. Editor or Translator Name</contributor> -->
+    <description>The Distributed Text Services (DTS) endpoint for Digital Editions holdings. Actual collections are from the SNF Semper-Edition Project and ?SNF HWGW Project</description>
+    <!-- <date>YYYY or YYYY-MM-DD</date> -->
+    <language>de</language>
+    <!-- <publisher>Institution or publisher name</publisher> -->
+    <!-- <rights>License or rights statement, e.g. CC-BY 4.0</rights> -->
+    <subject>Critical Editions, Gottfried Semper, Heinrich Wofflin</subject>
+    <!-- <coverage>Temporal or spatial scope of the material</coverage> -->
+    <!-- <type>DTS resource type, e.g. Collection</type> -->
+    <!-- <source>Original source or provenance</source> -->
+    <format>application/tei+xml</format>
+  </dublinCore>
+  <!-- inject members programmatically -->
+    <!-- <members>
+    </members> -->
+
+</collection>

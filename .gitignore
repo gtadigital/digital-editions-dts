@@ -7,6 +7,8 @@ run.sh
 _dev
 docker-compose.dev*
 
+sample_raw_data/
+
 # Dapythings
 app.db
 balbilla

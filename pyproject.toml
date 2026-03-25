@@ -1,0 +1,10 @@
+[project]
+name = "21b-services-dts-dapytains"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "click>=8.3.1",
+    "lxml>=6.0.2",
+]
