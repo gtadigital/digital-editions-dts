@@ -3,6 +3,7 @@ out/
 run.sh
 .env
 .DS_Store
+_dev*
 
 _dev
 docker-compose.dev*
