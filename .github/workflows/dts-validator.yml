@@ -2,8 +2,6 @@ name: DTS-Validator
 
 on:
   push:
-    branches:
-      - main
   pull_request:
 
 jobs:
@@ -27,8 +25,8 @@ jobs:
       - uses: actions/checkout@v4
         name: Clone DTS-Validator
         with:
-          repository: 'mromanello/DTS-validator'
-          ref: 'v0.2.0'
+          repository: 'distributed-text-services/validator'
+          ref: 'v0.2.3'
           path: "dts-validator"
 
       # Flask Server
@@ -39,7 +37,7 @@ jobs:
         run: sleep 5 # Adjust as needed
 
       - name: Install and run tests
-        run: | 
+        run: |
           cd dts-validator
           python -m venv env
           source env/bin/activate
