@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="semper_edition_schema_prov_mit_druck.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<!DOCTYPE TEI SYSTEM "Zeichen.dtd">
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title>Gottfried Semper: Der Stil. Druckausgaben: <label>Stil, Band I, Auflage 1, Version b</label>, <locus>Seite </locus>.</title>
+				<author ref="personen.xml#GS">Semper, Gottfried (1803-1879)</author>
+				<funder>Schweizerischer Nationalfonds (SNF)</funder>
+				<sponsor>Università della Svizzera italiana, Eidgenössische Technische Hochschule</sponsor>
+				<principal>Prof. Dr. Philip Ursprung (ETH), Prof. Dr. Sonja Hildebrand (USI)</principal> 
+			</titleStmt>
+			<editionStmt>
+				<edition>transcription and encoding</edition>
+				<respStmt n="1">
+					<resp>print OCR</resp>
+					<name>Transkribus</name>
+					<name ref="personen.xml#CB">Celine Berberat</name>
+				</respStmt>
+				<respStmt n="1">
+					<resp>converted to TEI</resp>
+					<name ref="personen.xml#CB">Celine Berberat</name>
+					<name ref="personen.xml#RM">Raphael Menasce</name>
+				</respStmt>
+			</editionStmt>
+			<publicationStmt>
+				<authority>Semper-Edition SNF Projekt</authority>
+				<pubPlace>Zürich</pubPlace>
+				<date>2017-2024</date>
+			</publicationStmt>
+			<sourceDesc>
+				<msDesc>
+					<msIdentifier>
+						<settlement>Zürich</settlement>
+						<institution>Eidgenössische Technische Hochschule</institution>
+						<repository>gta Archiv</repository>
+						<idno>209-BIB 64</idno>
+					</msIdentifier>
+				</msDesc>
+				<biblStruct type="book">
+					<monogr>
+						<author>Semper, Gottfried</author>
+						<title>Der Stil in den technischen und tektonischen Künsten oder praktische Aesthetik. Ein Handbuch für Techniker, Künstler und Kunstfreunde.</title>
+						<edition>Erste Auflage</edition>
+						<imprint>
+							<publisher>Verlag für Kunst und Wissenschaft</publisher>
+							<pubPlace>Frankfurt am Main</pubPlace>
+							<date>1860</date>
+						</imprint>
+					</monogr>
+				</biblStruct>
+				<bibl>Die mit dem Exemplar B edierte Version des Stil weist im zweiten Band Änderungen auf, die mit dem während des Drucks vorgenommenen Wechsel der Druckerei zusammenhängen. Der erste Band wurde unverändert mit dem Schnellpressendruck der J. G. Sprandel’schen Buchdruckerei in Stuttgart erstellt. Der zweite Band setzt sich aus Teilen aus dieser Druckerei zusammen (Lagen 1–11, S. 1–88) sowie aus solchen, die von der Akademischen Buchdruckerei von F. Straub in München besorgt wurden (Haupt- und Nebentitel sowie ab Lage 12, S. 89–589).</bibl>
+			</sourceDesc></fileDesc>
+		<profileDesc>
+			<creation>
+				<date>1860</date>
+			</creation>
+			<langUsage>
+				<language ident="de">Deutsch</language>
+			</langUsage>
+		</profileDesc>
+	</teiHeader>
+	<facsimile xml:id="facs_6">
+		<surface ulx="0" uly="0" lrx="1584" lry="2721">
+			<graphic url="Stil_Bd.1_Aufl_I_1860b_s1.tif" width="1584px" height="2721px"/>
+			<zone points="540,820 867,820 867,897 540,897" rendition="TextRegion" subtype="heading" xml:id="facs_6_r1"/>
+			<zone points="95,844 1333,844 1333,1083 95,1083" rendition="TextRegion" subtype="heading" xml:id="facs_6_r2"/>
+			<zone points="413,1167 1003,1167 1003,1256 413,1256" rendition="TextRegion" subtype="heading" xml:id="facs_6_r3"/>
+			<zone points="662,1278 754,1278 754,1332 662,1332" rendition="TextRegion" subtype="heading" xml:id="facs_6_r4"/>
+			<zone points="606,1345 802,1345 801,1384 605,1384" rendition="TextRegion" subtype="heading" xml:id="facs_6_r5"/>
+			<zone points="75,1381 1333,1379 1332,2366 74,2368" rendition="TextRegion" subtype="paragraph" xml:id="facs_6_r6"/>
+			<zone points="1085,2420 1123,2420 1123,2375 1085,2375" rendition="TextRegion" subtype="page-number" xml:id="facs_6_r7"/>
+		</surface>
+	</facsimile>
+	<text>
+		<body>
+			<pb facs="#facs_6" n="6"/>
+			<p facs="#facs_6_r1" xml:id="p.OOOM2E">
+				<lb facs="#facs_6_r1l1" n="N001"/>Erster Theil.
+			</p>
+			<p facs="#facs_6_r2" xml:id="p.mPnQDA">
+				<lb facs="#facs_6_r2l1" n="N001"/>Technischer Ursprung der wichtigsten Grundformen, Typen und
+				<lb facs="#facs_6_r2l2" n="N002"/>Symbole der Baukunst.
+			</p>
+			<p facs="#facs_6_r3" xml:id="p.cqqi99">
+				<lb facs="#facs_6_r3l1" n="N001"/>Erstes Hauptstück. Einleitung.
+			</p>
+			<p facs="#facs_6_r4" xml:id="p.nlHhLw">
+				<lb facs="#facs_6_r4l1" n="N001"/>§. 1.
+			</p>
+			<p facs="#facs_6_r5" xml:id="p.cWwJ39">
+				<lb facs="#facs_6_r5l1" n="N001"/>Allgemeines.
+			</p>
+			<p facs="#facs_6_r6" xml:id="p.6UUbLC" next="Stil_Bd.1_Aufl_I_1860b_s2.xml#p.1Myi7t">
+				<lb facs="#facs_6_r6l1" n="N001"/>Die Kunst hat ihre besondere Sprache, bestehend in formellen
+				<lb facs="#facs_6_r6l2" n="N002"/>Typen und Symbolen, die sich mit dem Gange der Culturge-
+				<lb facs="#facs_6_r6l3" n="N003" type="hyph"/>schichte auf das mannichfachste umbildeten, so dass in der Weise, 
+				<lb facs="#facs_6_r6l4" n="N004"/>sich durch sie verständlich zu machen, fast so grosse Verschie-
+				<lb facs="#facs_6_r6l5" n="N005" type="hyph"/>denheit herrscht, wie diess auf dem eigentlichen Sprachgebiete
+				<lb facs="#facs_6_r6l6" n="N006"/>der Fall ist. Wie nun die neueste Sprachforschung bestrebt ist,
+				<lb facs="#facs_6_r6l7" n="N007"/>die verwandtschaftlichen Beziehungen der menschlichen Idiome
+				<lb facs="#facs_6_r6l8" n="N008"/>zu einander  nachzuweisen, die einzelnen Wörter auf ihrem Gange
+				<lb facs="#facs_6_r6l9" n="N009"/>der Umbildung in dem Laufe der Jahrhunderte rückwärts zu ver-
+				<lb facs="#facs_6_r6l10" n="N010" type="hyph"/>folgen und sie auf einen oder mehrere  Punkte zurückzuführen,
+				<lb facs="#facs_6_r6l11" n="N011"/>woselbst sie in gemeinsamen Urformen einander begegnen, wie
+				<lb facs="#facs_6_r6l12" n="N012"/>es ihr auf diesem Wege gelungen ist, die Sprachkunde zu einer
+				<lb facs="#facs_6_r6l13" n="N013"/>ächten Wissenschaft zu erheben, sogar das bloss praktische Stu-
+				<lb facs="#facs_6_r6l14" n="N014" type="hyph"/>dium der Sprachen zu erleichtern und über das dunkle Gebiet
+				<lb facs="#facs_6_r6l15" n="N015"/>der Urgeschichte der Völker ein überraschendes Licht aufzu-
+				<lb facs="#facs_6_r6l16" n="N016" type="hyph"/>strecken, eben so lässt sich ein analoges Bestreben auf dem
+				<lb facs="#facs_6_r6l17" n="N017"/>Felde der Kunstforschung rechtfertigen, welches der Entwicklung
+				<lb facs="#facs_6_r6l18" n="N018"/>der Kunstformen aus ihren Keimen und Wurzeln, ihren Ueber-
+			</p>
+			<join target="#p.6UUbLC Stil_Bd.1_Aufl_I_1860b_s2.xml#p.1Myi7t"/>
+			<p facs="#facs_6_r7" xml:id="p.U8KV83">
+				<lb facs="#facs_6_r7l1" n="N001"/>1
+			</p>
+		</body>
+	</text>
+</TEI>

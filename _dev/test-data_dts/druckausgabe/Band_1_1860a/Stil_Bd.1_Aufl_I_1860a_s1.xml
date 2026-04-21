@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="semper_edition_schema_prov_mit_druck.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<!DOCTYPE TEI SYSTEM "Zeichen.dtd">
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title>Gottfried Semper: Der Stil. Druckausgaben: <label>Stil, Band I, Auflage 1, Version a</label>, <locus>Seite 1</locus>.</title>
+				<author ref="personen.xml#GS">Semper, Gottfried (1803-1879)</author>
+				<funder>Schweizerischer Nationalfonds (SNF)</funder>
+				<sponsor>Università della Svizzera italiana, Eidgenössische Technische Hochschule</sponsor>
+				<principal> Prof. Dr. Philip Ursprung (ETH), Prof. Dr. Sonja Hildebrand (USI)</principal> 
+			</titleStmt>
+			<editionStmt>
+				<edition>transcription and encoding</edition>
+				<respStmt>
+					<resp>scans</resp>
+					<name>E-RARA, ETH Zürich</name>
+				</respStmt>
+				<respStmt n="1">
+					<resp>print OCR and correction</resp>
+					<name>Transkribus</name>
+					<name ref="personen.xml#SFL">Sara Finzi-Longo</name>
+				</respStmt>
+				<respStmt n="1">
+					<resp>converted to TEI</resp>
+					<name ref="personen.xml#SFL">Sara Finzi-Longo</name>
+				</respStmt>
+			</editionStmt>
+			<publicationStmt>
+				<authority>Semper-Edition SNF Projekt</authority>
+				<pubPlace>Zürich</pubPlace>
+				<date>2017-2020</date>
+			</publicationStmt>
+<sourceDesc>
+				<msDesc>
+					<msIdentifier>
+					<settlement>Zürich</settlement>
+						<institution>Eidgenössische Technische Hochschule</institution>
+						<repository>ETH Bibliothek</repository>
+						<idno>Rar 6712:1</idno>
+				</msIdentifier>
+				</msDesc>
+				<biblStruct type="book">
+					<monogr>
+						<author>Semper, Gottfried</author>
+						<title>Der Stil in den technischen und tektonischen Künsten oder praktische Aesthetik. Ein Handbuch für Techniker, Künstler und Kunstfreunde.</title>
+						<edition>Erste Auflage</edition>
+						<imprint>
+							<publisher>Verlag für Kunst und Wissenschaft</publisher>
+							<pubPlace>Frankfurt am Main</pubPlace>
+							<date>1860</date>
+						</imprint>
+					</monogr>
+				</biblStruct>
+				<bibl>Das Exemplar A entspricht der am weitesten verbreiteten Version des Stil, deren beide Bände dieselbe Druckerei, der Schnellpressendruck der J. G. Sprandel’schen Buchdruckerei in Stuttgart, besorgte. Das Exemplar gehörte Alfred Friedrich Bluntschli (1842–1930), Sempers Schüler und Nachfolger am Eidgenössischen Polytechnikum (1911 in ETH umbenannt).</bibl>
+			</sourceDesc></fileDesc>
+		<profileDesc><creation>
+				<date>1860</date>
+			</creation>
+			<langUsage>
+				<language ident="de">Deutsch</language>
+			</langUsage>
+			
+		</profileDesc>
+	</teiHeader>
+	<facsimile xml:id="facs_21">
+		<surface ulx="0" uly="0" lrx="1782" lry="3008">
+			<graphic url="Stil_Bd.1_Aufl_I_1860a_s1.jpg" width="1782px" height="3008px"/>
+			<zone points="91,407 1590,407 1590,2883 91,2883" rendition="printspace"/>
+			<zone points="605,1080 933,1080 933,1124 605,1124" rendition="TextRegion" subtype="header" xml:id="facs_21_r1"/>
+			<zone points="158,1135 1405,1135 1405,1304 158,1304" rendition="TextRegion" subtype="heading" xml:id="facs_21_r2"/>
+			<zone points="474,1435 1071,1435 1071,1484 474,1484" rendition="TextRegion" subtype="heading" xml:id="facs_21_r3"/>
+			<zone points="728,1529 819,1529 819,1578 728,1578" rendition="TextRegion" subtype="heading" xml:id="facs_21_r4"/>
+			<zone points="670,1600 868,1600 868,1636 670,1636" rendition="TextRegion" subtype="heading" xml:id="facs_21_r5"/>
+			<zone points="140,1626 1408,1626 1408,2609 140,2609" rendition="TextRegion" subtype="paragraph" xml:id="facs_21_r6"/>
+			<zone points="1218,2664 1143,2664 1143,2624 1218,2624" rendition="TextRegion" subtype="other" xml:id="facs_21_r7"/>
+		</surface>
+	</facsimile>
+	<text>
+		<body>
+			<pb facs="#facs_21" n="21"/>
+			<p facs="#facs_21_r1" xml:id="p.E0VEgO" prev="Stil_Bd.1_Aufl_I_1860a_s1.xml#p.9lLyP2" next="#p.loLTOf">
+				<lb facs="#facs_21_r1l1" n="N001"/>Erster Theil.
+			</p>
+			<p facs="#facs_21_r2" xml:id="p.loLTOf" prev="#p.E0VEgO" next="#p.AOshGs"> 
+				<lb facs="#facs_21_r2l1" n="N001"/>Technischer Ursprung der wichtigsten <rs type="term" ref="begriffsregister.xml#TERM0035">Grundformen</rs>, Typen und
+				<lb facs="#facs_21_r2l2" n="N002"/>Symbole der Baukunst.
+			</p>
+			<p facs="#facs_21_r3" xml:id="p.AOshGs" prev="#p.loLTOf" next="#p.ksIR7U">
+				<lb facs="#facs_21_r3l1" n="N001"/>Erstes Hauptstück. Einleitung.
+			</p>
+			<p facs="#facs_21_r4" xml:id="p.ksIR7U" prev="#p.AOshGs" next="#p.CFbyTE">
+				<lb facs="#facs_21_r4l1" n="N001"/>§. 1.
+			</p>
+			<p facs="#facs_21_r5" xml:id="p.CFbyTE" prev="#p.ksIR7U" next="#p.e4YqLp">
+				<lb facs="#facs_21_r5l1" n="N001"/>Allgemeines.
+			</p>
+			<join target="#p.e4YqLp Stil_Bd.1_Aufl_I_1860a_s2.xml#p.SRIZrI"/>
+			<p facs="#facs_21_r6" xml:id="p.e4YqLp" prev="#p.CFbyTE" next="Stil_Bd.1_Aufl_I_1860a_s2.xml#p.SRIZrI">
+				<lb facs="#facs_21_r6l1" n="N001"/>Die Kunst hat ihre besondere Sprache, bestehend in formellen
+				<lb facs="#facs_21_r6l2" n="N002"/>Typen und Symbolen, die sich mit dem Gange der Culturge-
+				<lb facs="#facs_21_r6l3" n="N003" type="hyph"/>schichte auf das mannichfachste umbildeten, so dass in der Weise,
+				<lb facs="#facs_21_r6l4" n="N004"/>sich durch sie verständlich zu machen, fast so grosse Verschie-
+				<lb facs="#facs_21_r6l5" n="N005" type="hyph"/>denheit herrscht, wie diess auf dem eigentlichen Sprachgebiete
+				<lb facs="#facs_21_r6l6" n="N006"/>der Fall ist. Wie nun die neueste <rs type="term" ref="begriffsregister.xml#TERM0036">Sprachforschung</rs> bestrebt ist,
+				<lb facs="#facs_21_r6l7" n="N007"/>die verwandtschaftlichen Beziehungen der menschlichen Idiome
+				<lb facs="#facs_21_r6l8" n="N008"/>zu einander nachzuweisen, die einzelnen Wörter auf ihrem Gange
+				<lb facs="#facs_21_r6l9" n="N009"/>der Umbildung in dem Laufe der Jahrhunderte rückwärts zu ver-
+				<lb facs="#facs_21_r6l10" n="N010" type="hyph"/>folgen und sie auf einen oder mehrere Punkte zurückzuführen,
+				<lb facs="#facs_21_r6l11" n="N011"/>woselbst sie in gemeinsamen Urformen einander begegnen, wie
+				<lb facs="#facs_21_r6l12" n="N012"/>es ihr auf diesem Wege gelungen ist, die Sprachkunde zu einer
+				<lb facs="#facs_21_r6l13" n="N013"/>ächten Wissenschaft zu erheben, sogar das bloss praktische Stu-
+				<lb facs="#facs_21_r6l14" n="N014" type="hyph"/>dium der Sprachen zu erleichtern und über das dunkle Gebiet
+				<lb facs="#facs_21_r6l15" n="N015"/>der Urgeschichte der Völker ein überraschendes Licht aufzu-
+				<lb facs="#facs_21_r6l16" n="N016" type="hyph"/>stecken, eben so lässt sich ein analoges Bestreben auf dem
+				<lb facs="#facs_21_r6l17" n="N017"/>Felde der Kunstforschung rechtfertigen, welches der Entwicklung
+				<lb facs="#facs_21_r6l18" n="N018"/>der Kunstformen aus ihren Keimen und Wurzeln, ihren Ueber-
+			</p>
+			<p facs="#facs_21_r7" xml:id="p.PNDA4b">
+				<lb facs="#facs_21_r7l1" n="N001"/>1
+			</p>
+		</body>
+	</text>
+</TEI>

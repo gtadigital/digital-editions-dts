@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="semper_edition_schema_prov_mit_druck.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<!DOCTYPE TEI SYSTEM "Zeichen.dtd">
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title>Gottfried Semper: Der Stil. Druckausgaben: <label>Stil, Band I, Auflage 1, Version a</label>, <locus>Seite 0</locus>.</title>
+				<author ref="personen.xml#GS">Semper, Gottfried (1803-1879)</author>
+				<funder>Schweizerischer Nationalfonds (SNF)</funder>
+				<sponsor>Università della Svizzera italiana, Eidgenössische Technische Hochschule</sponsor>
+				<principal> Prof. Dr. Philip Ursprung (ETH), Prof. Dr. Sonja Hildebrand (USI)</principal> 
+			</titleStmt>
+			<editionStmt>
+				<edition>transcription and encoding</edition>
+				<respStmt>
+					<resp>scans</resp>
+					<name>E-RARA, ETH Zürich</name>
+				</respStmt>
+				<respStmt n="1">
+					<resp>print OCR and correction</resp>
+					<name>Transkribus</name>
+					<name ref="personen.xml#SFL">Sara Finzi-Longo</name>
+				</respStmt>
+				<respStmt n="1">
+					<resp>converted to TEI</resp>
+					<name ref="personen.xml#SFL">Sara Finzi-Longo</name>
+				</respStmt>
+			</editionStmt>
+			<publicationStmt>
+				<authority>Semper-Edition SNF Projekt</authority>
+				<pubPlace>Zürich</pubPlace>
+				<date>2017-2020</date>
+			</publicationStmt>
+<sourceDesc>
+				<msDesc>
+					<msIdentifier>
+					<settlement>Zürich</settlement>
+						<institution>Eidgenössische Technische Hochschule</institution>
+						<repository>ETH Bibliothek</repository>
+						<idno>Rar 6712:1</idno>
+				</msIdentifier>
+				</msDesc>
+				<biblStruct type="book">
+					<monogr>
+						<author>Semper, Gottfried</author>
+						<title>Der Stil in den technischen und tektonischen Künsten oder praktische Aesthetik. Ein Handbuch für Techniker, Künstler und Kunstfreunde.</title>
+						<edition>Erste Auflage</edition>
+						<imprint>
+							<publisher>Verlag für Kunst und Wissenschaft</publisher>
+							<pubPlace>Frankfurt am Main</pubPlace>
+							<date>1860</date>
+						</imprint>
+					</monogr>
+				</biblStruct>
+				<bibl>Das Exemplar A entspricht der am weitesten verbreiteten Version des Stil, deren beide Bände dieselbe Druckerei, der Schnellpressendruck der J. G. Sprandel’schen Buchdruckerei in Stuttgart, besorgte. Das Exemplar gehörte Alfred Friedrich Bluntschli (1842–1930), Sempers Schüler und Nachfolger am Eidgenössischen Polytechnikum (1911 in ETH umbenannt).</bibl>
+			</sourceDesc></fileDesc>
+		<profileDesc><creation>
+				<date>1860</date>
+			</creation>
+			<langUsage>
+				<language ident="de">Deutsch</language>
+			</langUsage>
+			
+		</profileDesc>
+	</teiHeader>
+	<facsimile xml:id="facs_5">
+		<surface ulx="0" uly="0" lrx="1923" lry="2940">
+			<graphic url="Stil_Bd.1_Aufl_I_1860a_s0.jpg" width="1923px" height="2940px"/>
+			<zone points="799,405 1399,405 1399,499 799,499" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r1"/>
+			<zone points="1041,603 1155,603 1155,633 1041,633" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r2"/>
+			<zone points="496,721 1694,721 1694,812 496,812" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r3"/>
+			<zone points="1058,891 1125,891 1125,918 1058,918" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r4"/>
+			<zone points="694,1002 1492,1002 1492,1061 694,1061" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r5"/>
+			<zone points="523,1161 1660,1161 1660,1221 523,1221" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r6"/>
+			<zone points="1060,1287 1134,1287 1134,1333 1060,1333" rendition="TextRegion" xml:id="facs_5_r7"/>
+			<zone points="826,1396 1366,1396 1366,1452 826,1452" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r8"/>
+			<zone points="640,1453 1535,1453 1535,1488 640,1488" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r9"/>
+			<zone points="1010,1587 1165,1587 1165,1590 1010,1590" rendition="Separator" xml:id="facs_5_r_11"/>
+			<zone points="939,1688 1240,1688 1240,1741 939,1741" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r10"/>
+			<zone points="756,1821 1419,1821 1419,1886 756,1886" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r11"/>
+			<zone points="889,2284 1269,2284 1269,2331 889,2331" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r12"/>
+			<zone points="678,2365 1484,2365 1484,2473 678,2473" rendition="TextRegion" subtype="paragraph" xml:id="facs_5_r13"/>
+		</surface>
+	</facsimile>
+	<text>
+		<body>
+			<pb facs="#facs_5" n="5"/>
+			<p facs="#facs_5_r1" xml:id="p.TmUh7l" next="#p.EfOUsS">
+				<lb facs="#facs_5_r1l1" n="N001"/>DER STIL
+			</p>
+			<p facs="#facs_5_r2" xml:id="p.EfOUsS" prev="#p.TmUh7l" next="#p.pwGzmM">
+				<lb facs="#facs_5_r2l1" n="N001"/>in den
+			</p>
+			<p facs="#facs_5_r3" xml:id="p.pwGzmM" prev="#p.EfOUsS" next="#p.SzbJKt">
+				<lb facs="#facs_5_r3l1" n="N001"/>technischen und tektonischen Künsten,
+			</p>
+			<p facs="#facs_5_r4" xml:id="p.SzbJKt" prev="#p.pwGzmM" next="#p.EaIjQ1">
+				<lb facs="#facs_5_r4l1" n="N001"/>oder
+			</p>
+			<p facs="#facs_5_r5" xml:id="p.EaIjQ1" prev="#p.SzbJKt" next="#p.BKffZg">
+				<lb facs="#facs_5_r5l1" n="N001"/><rs type="term" ref="begriffsregister.xml#TERM0034">PRAKTISCHE AESTHETIK</rs>.
+			</p>
+			<p facs="#facs_5_r6" xml:id="p.BKffZg" prev="#p.EaIjQ1" next="#p.SdPgJK">
+				<lb facs="#facs_5_r6l1" n="N001"/>Ein Handbuch für Techniker, Künstler und Kunstfreunde
+			</p>
+			<p facs="#facs_5_r7" xml:id="p.SdPgJK" prev="#p.BKffZg" next="#p.b8AkcE">
+				<lb facs="#facs_5_r7l1" n="N001"/>von
+			</p>
+			<p facs="#facs_5_r8" xml:id="p.b8AkcE" prev="#p.SdPgJK" next="#p.mN5s5L">
+				<lb facs="#facs_5_r8l1" n="N001"/><rs type="person" ref="personen.xml#GS">Gottfried Semper</rs>,
+			</p>
+			<p facs="#facs_5_r9" xml:id="p.mN5s5L" prev="#p.gHTG3e" next="#p.gHTG3e">
+				<lb facs="#facs_5_r9l1" n="N001"/>Professor der <rs type="term" ref="begriffsregister.xml#TERM0004">Baukunst</rs> an dem allg. eidg. <rs type="org" ref="orgregister.xml#ORG035">Polytechnikum zu Zürich</rs>.
+			</p>
+			<p facs="#facs_5_r10" xml:id="p.gHTG3e" prev="#p.mN5s5L" next="#p.yUrEMw">
+				<lb facs="#facs_5_r10l1" n="N001"/>Erster <rs type="artefact" ref="artefaktenregister.xml#THING0273">Band</rs>.
+			</p>
+			<p facs="#facs_5_r11" xml:id="p.yUrEMw" prev="#p.gHTG3e" next="#p.j8is42">
+				<lb facs="#facs_5_r11l1" n="N001"/><hi rend="gesperrt">Textile <supplied reason="über">Kunst</supplied></hi>.
+			</p>
+			<p facs="#facs_5_r12" xml:id="p.j8is42" prev="#p.yUrEMw" next="#p.9lLyP2">
+				<lb facs="#facs_5_r12l1" n="N001"/><rs type="place" ref="ortsregister.xml#FRANKFURT1">FRANKFURT a. M.</rs>
+			</p>
+			<p facs="#facs_5_r13" xml:id="p.9lLyP2" prev="#p.j8is42" next="Stil_Bd.1_Aufl_I_1860a_s1.xml#p.E0VEgO">
+				<lb facs="#facs_5_r13l1" n="N001"/>Verlag für Kunst und Wissenschaft.
+				<lb facs="#facs_5_r13l2" n="N002"/>1860.
+			</p>
+		</body>
+	</text>
+</TEI>
