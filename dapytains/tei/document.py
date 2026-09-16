@@ -12,6 +12,54 @@ from dapytains.errors import UnknownTreeName
 
 COPY_UNTIL_END = -1
 _namespace = re.compile(r"Q{(?P<namespace>[^}]+)}(?P<tagname>.+)")
+_ID_REF = re.compile(r'#([\w.\-:]+)')
+_XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
+
+
+def _collect_id_refs(element: Element) -> set:
+    """All #fragment values referenced in any attribute of the element tree."""
+    refs = set()
+    for node in element.iter():
+        for value in node.attrib.values():
+            refs.update(_ID_REF.findall(value))
+    return refs
+
+
+def _collect_xml_ids(element: Element) -> set:
+    """All @xml:id values declared anywhere in the element tree."""
+    ids = set()
+    for node in element.iter():
+        xml_id = node.get(_XML_ID)
+        if xml_id:
+            ids.add(xml_id)
+    return ids
+
+
+def _filter_standoff(element: Element, passage_refs: set, passage_xml_ids: set) -> bool:
+    """Recursively prune standOff in-place, keeping only relevant elements.
+
+    An element is kept (returns True) when:
+    - its @xml:id is in passage_refs  (passage points to it), or
+    - any of its attribute values reference an id in passage_xml_ids
+      (it points to a passage element, e.g. target="#w55"), or
+    - at least one of its descendants satisfies either condition.
+
+    Call after the fixed-point expansion of passage_refs so that transitive
+    standOff→standOff references (e.g. @ana="#fs05") are already folded in.
+    """
+    own_id = element.get(_XML_ID)
+    if own_id and own_id in passage_refs:
+        return True
+    for value in element.attrib.values():
+        if any(ref in passage_xml_ids for ref in _ID_REF.findall(value)):
+            return True
+    keep = False
+    for child in list(element):
+        if _filter_standoff(child, passage_refs, passage_xml_ids):
+            keep = True
+        else:
+            element.remove(child)
+    return keep
 
 
 def xpath_split(string: str) -> List[str]:
@@ -233,7 +281,7 @@ def reverse_ancestor(xpaths: List[str]) -> str:
 def _treat_siblings(
         context_node: saxonlib.PyXdmNode,
         last_node: ElementBase,
-        xpath: str,
+        xpath: Union[str, saxonlib.PyXdmNode],
         processor: saxonlib.PySaxonProcessor,
         ancestor_list: Optional[List[str]] = None
 ) -> Optional[ElementBase]:
@@ -241,10 +289,25 @@ def _treat_siblings(
 
     :param context_node: Node against which xPath are run
     :param last_node: Node on which data is created
-    :param xpath: xPath of the sibling
+    :param xpath: xPath of the sibling, or a concrete node acting as an exclusive upper bound
+        (used for milestone-mode column/line boundaries, where a tag/attribute based xpath
+        fragment would not reliably identify the right occurrence)
     :param prefix: Ancestor path for the sibling at this point
     """
     xproc = get_xpath_proc(context_node, processor=processor)
+
+    if isinstance(xpath, saxonlib.PyXdmNode):
+        xproc.declare_variable("__boundary")
+        xproc.set_parameter("__boundary", xpath)
+        next_nodes = xpath_eval(xproc, "./following-sibling::node()[. << $__boundary]")
+        for node in next_nodes:
+            if node.node_kind_str == "text":
+                if not last_node.tail:
+                    last_node.tail = unescape(_get_text(node, ".", processor=processor))
+            else:
+                last_node = copy_node(node, include_children=True, parent=last_node.getparent(), processor=processor)
+        return last_node
+
     loc_xpath = "node()" if xpath == COPY_UNTIL_END else xpath
     if ancestor_list:
         loc_xpath += f"{reverse_ancestor(ancestor_list[::-1])}"
@@ -283,6 +346,37 @@ def _treat_siblings(
             )
 
 
+def _copy_milestone_anchors(
+        xpath_proc: PyXPathProcessor,
+        result_start: saxonlib.PyXdmNode,
+        anchors: List[saxonlib.PyXdmNode],
+        new_tree: Element,
+        processor: saxonlib.PySaxonProcessor
+) -> None:
+    """ Copy citation-anchoring milestone nodes (e.g. <cb/>) into the reconstructed tree.
+
+    A milestone-nested reference resolves to its deepest node only (e.g. the <lb/>), while
+    the milestones carrying the passage's citation identity (the <cb/> of "this column") sit
+    before it in the document as siblings, not ancestors. At each reconstruction level, copy
+    the anchors that are direct children of the current root and precede the start node;
+    anchors sitting deeper along the path are copied by the deeper recursion levels. An
+    anchor sealed inside an element that is not on the walked path (e.g. a <cb/> closing
+    inside a previous wrapper) is not recovered.
+
+    :param xpath_proc: XPath processor whose context is the current root
+    :param result_start: Node the walk resolved at this level (start side)
+    :param anchors: Milestone nodes of the start reference's ancestor units
+    :param new_tree: Reconstructed copy of the current root
+    """
+    xpath_proc.declare_variable("__anchor")
+    xpath_proc.declare_variable("__anchor_start")
+    xpath_proc.set_parameter("__anchor_start", result_start)
+    for anchor in anchors:
+        xpath_proc.set_parameter("__anchor", anchor)
+        if xpath_proc.effective_boolean_value("exists(./node()[. is $__anchor][. << $__anchor_start])"):
+            copy_node(anchor, include_children=True, parent=new_tree, processor=processor)
+
+
 def xpath_eval(proc: PyXPathProcessor, xpath) -> List:
     return proc.evaluate(xpath) or []
 
@@ -304,7 +398,8 @@ def reconstruct_doc(
     end_xpath: Optional[List[str]] = None,
     start_siblings: Optional[Union[str, int]] = None,
     end_siblings: Optional[Union[str, int]] = None,
-    copy_until: bool = False
+    copy_until: bool = False,
+    start_anchors: Optional[List[saxonlib.PyXdmNode]] = None
 ) -> Element:
     """ Loop over passages to construct and increment new tree given a parent and XPaths
 
@@ -316,6 +411,8 @@ def reconstruct_doc(
     :type end_xpath: [str]
     :param start_siblings: If siblings of starts need to be captured, provide the XPATH here. If == COPY_UNTIL_END, copy until ends
     :param end_siblings: If siblings of end need to be captured, provide XPath here.  If == COPY_UNTIL_END, copy until ends
+    :param start_anchors: Milestone nodes (e.g. <cb/>) anchoring the start reference's ancestor
+        units, to be copied where they precede the start node (see _copy_milestone_anchors)
     :return: Newly incremented tree
 
     """
@@ -361,6 +458,9 @@ def reconstruct_doc(
             ):
                 copy_node(sibling, include_children=True, parent=new_tree, processor=processor)
 
+        if start_anchors and new_tree is not None and result_start is not None:
+            _copy_milestone_anchors(xpath_proc, result_start, start_anchors, new_tree, processor=processor)
+
         # We get the children if the XPath stops here
         # We copy the node we found
         copied_node = copy_node(
@@ -383,9 +483,10 @@ def reconstruct_doc(
                 start_xpath=queue_start,
                 end_xpath=queue_end,
                 start_siblings=start_siblings,
-                end_siblings=end_siblings, processor=processor
+                end_siblings=end_siblings, processor=processor,
+                start_anchors=start_anchors
             )
-        if start_siblings:
+        if start_siblings is not None:
             _treat_siblings(context_node=result_start, xpath=start_siblings, last_node=copied_node,
                             ancestor_list=ancestor_start, processor=processor)
         return copied_node
@@ -416,7 +517,8 @@ def reconstruct_doc(
                 end_xpath=queue_end,
                 start_siblings=start_siblings,
                 end_siblings=end_siblings,
-                processor=processor
+                processor=processor,
+                start_anchors=start_anchors
             )
             return new_tree
 
@@ -443,7 +545,8 @@ def reconstruct_doc(
                 end_xpath=queue_end,
                 start_siblings=start_siblings,
                 end_siblings=end_siblings,
-                processor=processor
+                processor=processor,
+                start_anchors=start_anchors
             )
             return new_tree
 
@@ -454,6 +557,9 @@ def reconstruct_doc(
         if end_is_traversing:
             queue_end = end_xpath
 
+        if start_anchors and new_tree is not None and result_start is not None:
+            _copy_milestone_anchors(xpath_proc, result_start, start_anchors, new_tree, processor=processor)
+
         # We start by copying start.
         parent_start = copy_node(
             result_start,
@@ -463,7 +569,7 @@ def reconstruct_doc(
         )
         # If we have a queue, we run the queue
         if queue_start:
-            if end_siblings and not start_siblings:
+            if end_siblings is not None and start_siblings is None:
                 # We have an end_siblings elsewhere, what we want is to cover what we find below, and we take everything
                 # but the next level !
                 start_siblings = "node()"
@@ -474,19 +580,30 @@ def reconstruct_doc(
                 start_xpath=queue_start,
                 end_xpath=queue_start,
                 start_siblings=start_siblings,
-                processor=processor
+                processor=processor,
+                start_anchors=start_anchors
             )
 
-        # When we don't have similar node, we loop on siblings until we get to the expected element
-        #  For this reason, we need to change matching xpath (ie. ./div[position()=1]) into compatible
-        #  suffixes with preceding-sibling or following-sibling.
-        # We do that for start and end
-        sib_current_start = clean_xpath_for_following(current_start, start_is_traversing)
-        sib_current_end = clean_xpath_for_following(current_end, end_is_traversing)
-
-        # We look for siblings between start and end matches
-        for sibling in xpath_eval(xpath_proc, f"./node()[preceding-sibling::{sib_current_start} and following-sibling::{sib_current_end}]"):
-            copy_node(sibling, include_children=True, parent=new_tree, processor=processor)
+        # We look for siblings between start and end matches. When both ends are already
+        # resolved to concrete nodes, bind them as parameters and compare by document order,
+        # rather than re-deriving a tag/position-based xpath fragment: a position() predicate
+        # (e.g. "lb[2]") is not safe to reuse as a relative preceding/following-sibling step,
+        # since its meaning ("2nd node of that name") is re-evaluated per candidate context,
+        # not globally.
+        if result_start is not None and result_end is not None:
+            xpath_proc.declare_variable("__range_start")
+            xpath_proc.set_parameter("__range_start", result_start)
+            xpath_proc.declare_variable("__range_end")
+            xpath_proc.set_parameter("__range_end", result_end)
+            for sibling in xpath_eval(xpath_proc, "./node()[. >> $__range_start][. << $__range_end]"):
+                copy_node(sibling, include_children=True, parent=new_tree, processor=processor)
+        else:
+            # For this reason, we need to change matching xpath (ie. ./div[position()=1]) into
+            # compatible suffixes with preceding-sibling or following-sibling.
+            sib_current_start = clean_xpath_for_following(current_start, start_is_traversing)
+            sib_current_end = clean_xpath_for_following(current_end, end_is_traversing)
+            for sibling in xpath_eval(xpath_proc, f"./node()[preceding-sibling::{sib_current_start} and following-sibling::{sib_current_end}]"):
+                copy_node(sibling, include_children=True, parent=new_tree, processor=processor)
 
         # Here we reached the end, logically.
         node = copy_node(node=result_end, include_children=len(queue_end) == 0, parent=new_tree, processor=processor)
@@ -505,7 +622,7 @@ def reconstruct_doc(
                 copy_until=not xpath_proc.effective_boolean_value(f"head(./element()[1]) is head({preview})"),
                 processor=processor
             )
-        if end_siblings:
+        if end_siblings is not None:
             _treat_siblings(context_node=result_end, xpath=end_siblings, last_node=node, ancestor_list=ancestor_end,
                             processor=processor)
     return new_tree
@@ -558,12 +675,30 @@ class Document:
 
         self.default_tree: str = default
 
-    def get_passage(self, ref_or_start: Optional[str], end: Optional[str] = None, tree: Optional[str] = None) -> Element:
+    def get_passage(
+        self,
+        ref_or_start: Optional[str],
+        end: Optional[str] = None,
+        tree: Optional[str] = None,
+        include_header: bool = False,
+        include_standoff: bool = False,
+    ) -> Element:
         """ Retrieve a given passage from the document
 
         :param ref_or_start: First element of a range or single ref
         :param end: End of a range
         :param tree: Name of a specific tree
+        :param include_header: Prepend the full teiHeader to the result (default False)
+        :param include_standoff: Append filtered standOff content to the result (default False).
+            Three reference directions are resolved:
+            (1) passage → standOff: attributes such as @corresp/@ref in the passage pointing to
+                standOff @xml:id values;
+            (2) standOff → passage: @target/@from/@to etc. on standOff elements pointing to
+                @xml:id values present in the passage;
+            (3) transitive standOff → standOff: @ana and similar on already-included standOff
+                elements (fixed-point expansion until stable).
+            Note: when include_header is False, teiHeader entries referenced only from standOff
+            (e.g. taxonomy categories via @ana) are not individually extracted.
         """
         if ref_or_start and not end:
             start, end = ref_or_start, None
@@ -584,6 +719,13 @@ class Document:
         start_sibling = None
         end_sibling = None
 
+        # Milestone-nested start (e.g. a line under a <cb/>): the milestones that anchor its
+        # ancestor units are siblings in the document, not ancestors, so the walk would skip
+        # them. Resolve them now so reconstruct_doc can copy them where they belong.
+        start_anchors = None
+        if self.citeStructure[tree].is_milestone_nested(start):
+            start_anchors = self.citeStructure[tree].milestone_anchors(start)
+
         if end:
             end_xpath = self.citeStructure[tree].generate_xpath(end)
             end_xpath_norm = normalize_xpath(xpath_split(end_xpath))
@@ -591,8 +733,13 @@ class Document:
                 next_ref = self.get_next(tree, end)
                 if next_ref:
                     next_ref = next_ref.ref
-                    next_ref_xpath = normalize_xpath(xpath_split(self.citeStructure[tree].generate_xpath(next_ref)))[-1]
-                    end_sibling = next_ref_xpath.strip("/")
+                    if self.citeStructure[tree].is_milestone_nested(next_ref):
+                        end_sibling = self.citeStructure[tree].resolve_node(next_ref)
+                    else:
+                        next_ref_xpath = normalize_xpath(xpath_split(self.citeStructure[tree].generate_xpath(next_ref)))[-1]
+                        end_sibling = next_ref_xpath.strip("/")
+                elif (milestone_boundary := self.citeStructure[tree].get_next_milestone_boundary(end)) is not None:
+                    end_sibling = milestone_boundary
                 else:
                     end_sibling = COPY_UNTIL_END
         else:
@@ -601,8 +748,13 @@ class Document:
                 next_ref = self.get_next(tree, start)
                 if next_ref:
                     next_ref = next_ref.ref
-                    next_ref_xpath = normalize_xpath(xpath_split(self.citeStructure[tree].generate_xpath(next_ref)))[-1]
-                    start_sibling = next_ref_xpath.strip("/")
+                    if self.citeStructure[tree].is_milestone_nested(next_ref):
+                        start_sibling = self.citeStructure[tree].resolve_node(next_ref)
+                    else:
+                        next_ref_xpath = normalize_xpath(xpath_split(self.citeStructure[tree].generate_xpath(next_ref)))[-1]
+                        start_sibling = next_ref_xpath.strip("/")
+                elif (milestone_boundary := self.citeStructure[tree].get_next_milestone_boundary(start)) is not None:
+                    start_sibling = milestone_boundary
                 else:
                     start_sibling = COPY_UNTIL_END
 
@@ -614,9 +766,66 @@ class Document:
             end_xpath=end_xpath_norm,
             start_siblings=start_sibling,
             end_siblings=end_sibling,
-            processor=self.xml_processor
+            processor=self.xml_processor,
+            start_anchors=start_anchors
         )
         objectify.deannotate(root, cleanup_namespaces=True)
+
+        if include_header:
+            xp = get_xpath_proc(self.xml, processor=self.xml_processor)
+            header_nodes = xpath_eval(xp, "/TEI/teiHeader")
+            if header_nodes:
+                xq = self.xml_processor.new_xquery_processor()
+                xq.set_context(xdm_item=header_nodes[0])
+                header_str = xq.run_query_to_string(query_text=(
+                    "declare namespace output = 'http://www.w3.org/2010/xslt-xquery-serialization';"
+                    "declare option output:omit-xml-declaration 'yes';"
+                    "."
+                ))
+                if header_str and header_str.startswith("<"):
+                    root.insert(0, fromstring(header_str))
+
+        if include_standoff:
+            passage_refs = _collect_id_refs(root)
+            passage_xml_ids = _collect_xml_ids(root)
+
+            xp = get_xpath_proc(self.xml, processor=self.xml_processor)
+            standoff_elems = []
+            for so_node in xpath_eval(xp, "/TEI/standOff"):
+                xq = self.xml_processor.new_xquery_processor()
+                xq.set_context(xdm_item=so_node)
+                so_str = xq.run_query_to_string(query_text=(
+                    "declare namespace output = 'http://www.w3.org/2010/xslt-xquery-serialization';"
+                    "declare option output:omit-xml-declaration 'yes';"
+                    "."
+                ))
+                if so_str and so_str.startswith("<"):
+                    standoff_elems.append(fromstring(so_str))
+
+            if standoff_elems:
+                # Fixed-point: expand all_refs until included standOff elements
+                # reveal no further references (handles @ana and similar).
+                all_refs = set(passage_refs)
+                prev_size = -1
+                while len(all_refs) != prev_size:
+                    prev_size = len(all_refs)
+                    for so_elem in standoff_elems:
+                        for node in so_elem.iter():
+                            own_id = node.get(_XML_ID)
+                            is_relevant = (own_id and own_id in all_refs) or any(
+                                ref in passage_xml_ids
+                                for val in node.attrib.values()
+                                for ref in _ID_REF.findall(val)
+                            )
+                            if is_relevant:
+                                for val in node.attrib.values():
+                                    all_refs.update(_ID_REF.findall(val))
+
+                for so_elem in standoff_elems:
+                    _filter_standoff(so_elem, all_refs, passage_xml_ids)
+                    if len(so_elem) or so_elem.text:
+                        root.append(so_elem)
+
         return root
 
     def get_reffs(self, tree: Optional[str] = None):
@@ -634,6 +843,6 @@ class Document:
                         return c
             return None
         current_idx, current_unit, siblings = _find(refs, unit)
-        if current_idx < len(refs)-1:
+        if current_idx < len(siblings)-1:
             return siblings[current_idx+1]
         return None
